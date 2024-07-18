@@ -1,17 +1,14 @@
+var chartExists = false;
+
 function OnStart()
 {
     // Buat layout utama.
     layMain = app.CreateLayout("Absolute", "FillXY");
     
-    // Buat dan tambahkan layout pertama.
-    lay1 = app.AddLayout(layMain,"Linear", "Vertical");
-    lay1.SetBackColor("#ff0000");
-    lay1.SetPosition(0, 0, 1, 0.5); // Posisi dan ukuran: (x, y, width, height)
-    
     // Buat dan tambahkan layout kedua.
     lay2 = app.AddLayout(layMain,"Linear", "Vertical");
     lay2.SetBackColor("#00ffff");
-    lay2.SetPosition(0, 0.2, 1, 0.2); // Posisi dan ukuran: (x, y, width, height)
+    lay2.SetPosition(0, 0, 1, 1); // Posisi dan ukuran: (x, y, width, height)
     
     // Buat dan tambahkan layout ketiga.
     lay3 = app.AddLayout(layMain,"Linear", "Horizontal,Top");
@@ -32,18 +29,20 @@ function OnStart()
     
     // Fungsi untuk mengubah warna ikon.
     function changeColor(clickedIcon) {
-        for (var i = 0; i < nav.length; i++) {
-            if (nav[i] === clickedIcon) {
-                nav[i].SetTextColor("black");
-            } else {
-                nav[i].SetTextColor(defaultColor);
+        requestAnimationFrame(function() {
+            for (var i = 0; i < nav.length; i++) {
+                if (nav[i] === clickedIcon) {
+                    nav[i].SetTextColor("black");
+                    nav[i].Animate("Bounce");
+                } else {
+                    nav[i].SetTextColor(defaultColor);
+                }
             }
-        }
+        });
     }
     
     for (var i = 0; i < nav.length; i++) {
         nav[i].SetTextColor(defaultColor);
-        nav[i].SetBackColor("");
         nav[i].SetTextSize(36);
         nav[i].SetMargins(0.050, 0.01, 0.050, 0.01);
         
@@ -53,6 +52,39 @@ function OnStart()
         });
     }
     
+    // Tambahkan event listener untuk memanggil fungsi Chart saat nav[1] diklik.
+        nav[1].SetOnTouch(function() {
+        changeColor(this);
+        Chart();
+    });
+    
     // Tambahkan layout utama ke aplikasi.
     app.AddLayout(layMain);
+    
 }
+
+
+
+
+app.LoadPlugin('ChartJS');
+function Chart()
+{
+    if (!chartExists) {//cek apakah chart sudah ada
+        chart = app.LoadChartJS();
+        
+        data = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+            datasets: [
+                {
+                    label: 'First Dataset',
+                    data: [2, 5, 3, 15, 10],
+                    backgroundColor: ["#9C27B0", "#5E35B1", "#039BE5", "#FF9800", "#26A69A"]
+                }
+            ]
+        };
+        
+        pie = chart.CreateChart(data, 'pie', 0.9, 0.5);
+        lay2.AddChild(pie);
+        
+        chartExists = true;
+    }}
