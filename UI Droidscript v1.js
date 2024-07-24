@@ -7,7 +7,7 @@ function OnStart()
     
     // Buat dan tambahkan layout navigasi.
     layNav = app.CreateLayout("Linear", "Horizontal,Top");
-    layNav.SetBackColor("red");
+    layNav.SetBackColor("blue");
     layNav.SetPosition(0, 0.93, 1, 0.07); // Posisi dan ukuran: (x, y, width, height)
     layMain.AddChild(layNav);
     
@@ -64,6 +64,11 @@ function OnStart()
     
     // Warna awal ikon.
     var defaultColor = "white";
+     for (var i = 0; i < nav.length; i++) {
+        nav[i].SetTextColor(defaultColor);
+        nav[i].SetTextSize(36);
+        nav[i].SetMargins(0.050, 0.01, 0.050, 0.01);
+    }
     
     // Fungsi untuk mengubah warna ikon dan menampilkan layout yang sesuai.
     function changeColor(clickedIcon, layoutToShow) {
@@ -85,14 +90,10 @@ function OnStart()
         });
     }
     
-       for (var i = 0; i < nav.length; i++) {
-        nav[i].SetTextColor(defaultColor);
-        nav[i].SetTextSize(36);
-        nav[i].SetMargins(0.050, 0.01, 0.050, 0.01);
-        
-    }
+   
+    
     // Tambahkan event listener untuk setiap ikon navigasi.
-  nav[0].SetOnTouch(function() {
+    nav[0].SetOnTouch(function() {
         changeColor(this, lay1);
     });
     nav[1].SetOnTouch(function() {
@@ -116,4 +117,9 @@ function OnStart()
     lay3.Hide();
     lay4.Hide();
     lay5.Hide();
+    
+    // Muat file eksternal dan inisialisasi rotasi pada lay1.
+    app.LoadScript("rotate.js", function() {
+       // InitializeRotation(lay1);
+    });
 }
