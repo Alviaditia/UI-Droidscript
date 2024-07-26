@@ -63,7 +63,7 @@ function OnStart()
     ];
     
     // Warna awal ikon.
-    var defaultColor = "white";
+    var defaultColor = "green";
      for (var i = 0; i < nav.length; i++) {
         nav[i].SetTextColor(defaultColor);
         nav[i].SetTextSize(36);
