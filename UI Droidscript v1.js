@@ -38,19 +38,19 @@ function OnStart()
     layMain.AddChild(lay5);
     
     // Tambahkan teks ke setiap layout.
-    var text1 = app.CreateText("Ini layout 1");
+    var text1 = app.CreateText("layout 1");
     lay1.AddChild(text1);
     
-    var text2 = app.CreateText("Ini layout 2");
+    var text2 = app.CreateText("layout 2");
     lay2.AddChild(text2);
     
-    var text3 = app.CreateText("Ini layout 3");
+    var text3 = app.CreateText("layout 3");
     lay3.AddChild(text3);
     
-    var text4 = app.CreateText("Ini layout 4");
+    var text4 = app.CreateText("layout 4");
     lay4.AddChild(text4);
     
-    var text5 = app.CreateText("Ini layout 5");
+    var text5 = app.CreateText("layout 5");
     lay5.AddChild(text5);
     
     // Tambahkan ikon FontAwesome ke layout navigasi.
