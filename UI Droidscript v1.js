@@ -7,7 +7,7 @@ function OnStart()
     
     // Buat dan tambahkan layout navigasi.
     layNav = app.CreateLayout("Linear", "Horizontal,Top");
-    layNav.SetBackColor("blue");
+    layNav.SetBackColor("white");
     layNav.SetPosition(0, 0.93, 1, 0.07); // Posisi dan ukuran: (x, y, width, height)
     layMain.AddChild(layNav);
     
@@ -63,7 +63,7 @@ function OnStart()
     ];
     
     // Warna awal ikon.
-    var defaultColor = "blue";
+    var defaultColor = "red";
      for (var i = 0; i < nav.length; i++) {
         nav[i].SetTextColor(defaultColor);
         nav[i].SetTextSize(36);
