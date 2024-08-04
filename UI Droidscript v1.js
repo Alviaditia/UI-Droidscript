@@ -7,7 +7,7 @@ function OnStart()
     
     // Buat dan tambahkan layout navigasi.
     layNav = app.CreateLayout("Linear", "Horizontal,Top");
-    layNav.SetBackColor("white");
+    layNav.SetBackColor("green");
     layNav.SetPosition(0, 0.93, 1, 0.07); // Posisi dan ukuran: (x, y, width, height)
     layMain.AddChild(layNav);
     
